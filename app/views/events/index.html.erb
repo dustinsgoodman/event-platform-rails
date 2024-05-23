@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Events</h1>
+
+<div id="events" class="event-grid">
+  <% @events.each do |event| %>
+    <div class="event-card">
+      <%= render event %>
+      <p>
+        <%= link_to "Show", event %>
+        &nbsp;
+        <%= link_to "Edit", edit_event_path(event) %>
+      </p>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "New event", new_event_path %>
