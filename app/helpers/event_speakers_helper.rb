@@ -1,0 +1,2 @@
+module EventSpeakersHelper
+end

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :events do
     resources :event_sessions, path: :sessions, as: :sessions
+    resources :event_speakers, path: :speakers, as: :speakers
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

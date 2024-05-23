@@ -1,9 +1,9 @@
 class EventSessionsController < ApplicationController
   before_action :set_event_session, only: %i[ show edit update destroy ]
 
-  # GET /event_sessions or /event_sessions.json
+  # GET /event/:event_id/sessions
   def index
-    @event_sessions = EventSession.all
+    @event_sessions = Event.find(params[:event_id]).event_sessions
   end
 
   # GET /event_sessions/1 or /event_sessions/1.json

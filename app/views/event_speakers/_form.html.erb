@@ -1,0 +1,62 @@
+<%= form_with(model: event_speaker) do |form| %>
+  <% if event_speaker.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(event_speaker.errors.count, "error") %> prohibited this event_speaker from being saved:</h2>
+
+      <ul>
+        <% event_speaker.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :first_name, style: "display: block" %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= form.label :last_name, style: "display: block" %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= form.label :job_title, style: "display: block" %>
+    <%= form.text_field :job_title %>
+  </div>
+
+  <div>
+    <%= form.label :company, style: "display: block" %>
+    <%= form.text_field :company %>
+  </div>
+
+  <div>
+    <%= form.label :profile_picture, style: "display: block" %>
+    <%= form.text_field :profile_picture %>
+  </div>
+
+  <div>
+    <%= form.label :bio, style: "display: block" %>
+    <%= form.text_area :bio %>
+  </div>
+
+  <div>
+    <%= form.label :date_of_birth, style: "display: block" %>
+    <%= form.datetime_field :date_of_birth %>
+  </div>
+
+  <div>
+    <%= form.label :language, style: "display: block" %>
+    <%= form.text_field :language %>
+  </div>
+
+  <div>
+    <%= form.label :ip_address, style: "display: block" %>
+    <%= form.text_field :ip_address %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_23_222418) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_23_225808) do
   create_table "event_sessions", id: :string, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -21,6 +21,27 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_23_222418) do
     t.datetime "updated_at", null: false
     t.string "event_id"
     t.index ["event_id"], name: "index_event_sessions_on_event_id"
+  end
+
+  create_table "event_sessions_event_speakers", id: false, force: :cascade do |t|
+    t.string "event_session_id", null: false
+    t.string "event_speaker_id", null: false
+  end
+
+  create_table "event_speakers", id: :string, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "job_title"
+    t.string "company"
+    t.string "profile_picture"
+    t.text "bio", null: false
+    t.datetime "date_of_birth", null: false
+    t.string "language", default: "en-US", null: false
+    t.string "ip_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "event_id"
+    t.index ["event_id"], name: "index_event_speakers_on_event_id"
   end
 
   create_table "events", id: :string, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -45,4 +66,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_23_222418) do
   end
 
   add_foreign_key "event_sessions", "events"
+  add_foreign_key "event_speakers", "events"
 end
