@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   enum venue_type: { in_person: "IN_PERSON", online: 'ONLINE', hybrid: 'HYBRID' }
+  has_many :event_sessions, as: :sessions, dependent: :destroy
 
   before_create :maybe_assign_id
 

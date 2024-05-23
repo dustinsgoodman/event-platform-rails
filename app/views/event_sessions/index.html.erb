@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Event sessions</h1>
+
+<div id="event_sessions">
+  <% @event_sessions.each do |event_session| %>
+    <%= render event_session %>
+    <p>
+      <%= link_to "Show this event session", event_session_path(event_session.event_id, event_session.id) %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New event session", new_event_session_path %>
