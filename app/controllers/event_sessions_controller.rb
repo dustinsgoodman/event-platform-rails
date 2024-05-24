@@ -1,4 +1,4 @@
-class EventSessionsController < ApplicationController
+class EventSessionsController < AdminController
   before_action :set_event_session, only: %i[ show edit update destroy ]
 
   # GET /event/:event_id/sessions

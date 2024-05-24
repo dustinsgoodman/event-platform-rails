@@ -8,6 +8,12 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+@user = User.find_or_create_by!(email: 'local@test.com') do |user|
+  user.password = 'password'
+  user.provider = 'developer'
+  user.uid = ''
+end
+
 speaker_dustin = {
   first_name: 'Dustin',
   last_name: 'Goodman',

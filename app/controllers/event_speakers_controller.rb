@@ -1,4 +1,4 @@
-class EventSpeakersController < ApplicationController
+class EventSpeakersController < AdminController
   before_action :set_event_speaker, only: %i[ show edit update destroy ]
 
   # GET /event/:event_id/speakers
