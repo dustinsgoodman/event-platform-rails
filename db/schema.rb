@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_30_224709) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_30_232104) do
+  create_table "event_session_speakers", force: :cascade do |t|
+    t.integer "event_sessions_id", null: false
+    t.integer "event_speakers_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_sessions_id"], name: "index_event_session_speakers_on_event_sessions_id"
+    t.index ["event_speakers_id"], name: "index_event_session_speakers_on_event_speakers_id"
+  end
+
   create_table "event_sessions", id: :string, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -21,11 +30,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_30_224709) do
     t.datetime "updated_at", null: false
     t.string "event_id"
     t.index ["event_id"], name: "index_event_sessions_on_event_id"
-  end
-
-  create_table "event_sessions_event_speakers", id: false, force: :cascade do |t|
-    t.string "event_session_id", null: false
-    t.string "event_speaker_id", null: false
   end
 
   create_table "event_speakers", id: :string, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -78,7 +82,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_30_224709) do
     t.string "user_id", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :string, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "provider", null: false
@@ -88,10 +92,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_30_224709) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "event_session_speakers", "event_sessions", column: "event_sessions_id"
+  add_foreign_key "event_session_speakers", "event_speakers", column: "event_speakers_id"
   add_foreign_key "event_sessions", "events"
   add_foreign_key "event_speakers", "events"
   add_foreign_key "events", "platform_organizations"
