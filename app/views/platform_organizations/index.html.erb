@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Platform organizations</h1>
+
+<div id="platform_organizations">
+  <% @platform_organizations.each do |platform_organization| %>
+    <%= render platform_organization %>
+    <p>
+      <%= link_to "Show this platform organization", platform_organization %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New platform organization", new_platform_organization_path %>

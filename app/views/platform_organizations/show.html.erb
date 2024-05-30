@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @platform_organization %>
+
+<div>
+  <%= link_to "Edit this platform organization", edit_platform_organization_path(@platform_organization) %> |
+  <%= link_to "Back to platform organizations", platform_organizations_path %>
+
+  <%= button_to "Destroy this platform organization", @platform_organization, method: :delete %>
+</div>

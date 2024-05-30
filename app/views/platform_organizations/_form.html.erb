@@ -1,0 +1,17 @@
+<%= form_with(model: platform_organization) do |form| %>
+  <% if platform_organization.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(platform_organization.errors.count, "error") %> prohibited this platform_organization from being saved:</h2>
+
+      <ul>
+        <% platform_organization.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
