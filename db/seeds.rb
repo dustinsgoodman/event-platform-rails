@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
@@ -24,7 +26,7 @@ speaker_dustin = {
   date_of_birth: Date.parse('November 2, 1990'),
   language: 'en-US',
   ip_address: '171.174.170.81',
-  bio: 'Dustin Goodman is an engineer, tech speaker, and blogger with over a decade of experience in web development. He currently acts as an Engineering Manager at This Dot, and actively contributes free community resources through This Dot Media. He actively engages in the tech communities to bring new tech to people in accessible ways. He loves learning new tech and finding ways to use it in meaningful ways within projects. Additionally, he enjoys mentoring rising developers and helping them attain the knowledge and skills they need to level-up.',
+  bio: 'Dustin Goodman is an engineer, tech speaker, and blogger with over a decade of experience in web development. He currently acts as an Engineering Manager at This Dot, and actively contributes free community resources through This Dot Media. He actively engages in the tech communities to bring new tech to people in accessible ways. He loves learning new tech and finding ways to use it in meaningful ways within projects. Additionally, he enjoys mentoring rising developers and helping them attain the knowledge and skills they need to level-up.'
 }
 speaker_mike = {
   first_name: 'Mike',
@@ -36,7 +38,7 @@ speaker_mike = {
   date_of_birth: Date.parse('February 19, 1988'),
   language: 'en-US',
   ip_address: '95.25.112.121',
-  bio: "Mike is a developer, Angular GDE, and Director of Developer Advocacy at Ionic who's been working in the mobile landscape for most of his professional career. When he's not working Ionic itself, Mike works with community members and helps them succeed at mobile. In his spare time, he’s an aspiring woodworker, occasional musician, and craft beer lover.",
+  bio: "Mike is a developer, Angular GDE, and Director of Developer Advocacy at Ionic who's been working in the mobile landscape for most of his professional career. When he's not working Ionic itself, Mike works with community members and helps them succeed at mobile. In his spare time, he’s an aspiring woodworker, occasional musician, and craft beer lover."
 }
 speaker_cory = {
   first_name: 'Cory',
@@ -48,7 +50,7 @@ speaker_cory = {
   date_of_birth: Date.parse('September 17, 1984'),
   language: 'en-US',
   ip_address: '51.105.121.194',
-  bio: 'Cory is a Pluralsight author, 9 time Microsoft MVP, and international speaker. He is founder of reactjsconsulting, where he helps companies transition to React. He has trained over 10,000 software developers at conferences and businesses worldwide. Cory has authored over a dozen courses on JavaScript, React, C#, automated testing, and web development on Pluralsight. He shares software development tips daily on Twitter as @housecor.',
+  bio: 'Cory is a Pluralsight author, 9 time Microsoft MVP, and international speaker. He is founder of reactjsconsulting, where he helps companies transition to React. He has trained over 10,000 software developers at conferences and businesses worldwide. Cory has authored over a dozen courses on JavaScript, React, C#, automated testing, and web development on Pluralsight. He shares software development tips daily on Twitter as @housecor.'
 }
 events = [
   {
@@ -77,7 +79,7 @@ events = [
         start_at: DateTime.parse('October 26, 2023 14:00:00'),
         end_at: DateTime.parse('October 26, 2023 15:00:00'),
         capacity: nil,
-        event_speaker: speaker_dustin,
+        event_speaker: speaker_dustin
       },
       {
         name: 'One app, multiple platforms: How Cross Platform Actually Works',
@@ -86,7 +88,7 @@ events = [
         start_at: DateTime.parse('October 26, 2023 10:00:00'),
         end_at: DateTime.parse('October 26, 2023 11:00:00'),
         capacity: nil,
-        event_speaker: speaker_mike,
+        event_speaker: speaker_mike
       },
       {
         name: 'Lessons Learned from 10 Years in React',
@@ -95,7 +97,7 @@ events = [
         start_at: DateTime.parse('October 25, 2023 10:00:00'),
         end_at: DateTime.parse('October 25, 2023 11:00:00'),
         capacity: nil,
-        event_speaker: speaker_cory,
+        event_speaker: speaker_cory
       },
       {
         name: 'React: The Most Common Mistakes in 2023',
@@ -104,8 +106,8 @@ events = [
         start_at: DateTime.parse('October 25, 2023 14:00:00'),
         end_at: DateTime.parse('October 25, 2023 15:00:00'),
         capacity: nil,
-        event_speaker: speaker_cory,
-      },
+        event_speaker: speaker_cory
+      }
     ]
   },
   {
@@ -125,7 +127,7 @@ events = [
     registration_start_at: DateTime.parse('May 1, 2024 08:00:00'),
     registration_end_at: DateTime.parse('September 15, 2024 23:59:59'),
     currency: 'USD',
-    capacity: nil,
+    capacity: nil
   },
   {
     name: 'Connect.Tech 2025',
@@ -144,7 +146,7 @@ events = [
     registration_start_at: DateTime.parse('May 1, 2025 08:00:00'),
     registration_end_at: DateTime.parse('September 15, 2025 23:59:59'),
     currency: 'USD',
-    capacity: nil,
+    capacity: nil
   },
   {
     name: 'Connect.Tech 2026',
@@ -163,7 +165,7 @@ events = [
     registration_start_at: DateTime.parse('May 1, 2026 08:00:00'),
     registration_end_at: DateTime.parse('September 15, 2026 23:59:59'),
     currency: 'USD',
-    capacity: nil,
+    capacity: nil
   },
   {
     name: 'Connect.Tech 2027',
@@ -182,7 +184,7 @@ events = [
     registration_start_at: DateTime.parse('May 1, 2027 08:00:00'),
     registration_end_at: DateTime.parse('September 15, 2027 23:59:59'),
     currency: 'USD',
-    capacity: nil,
+    capacity: nil
   },
   {
     name: 'Connect.Tech 2028',
@@ -201,7 +203,7 @@ events = [
     registration_start_at: DateTime.parse('May 1, 2028 08:00:00'),
     registration_end_at: DateTime.parse('September 15, 2028 23:59:59'),
     currency: 'USD',
-    capacity: nil,
+    capacity: nil
   },
   {
     name: 'Connect.Tech 2029',
@@ -220,7 +222,7 @@ events = [
     registration_start_at: DateTime.parse('May 1, 2029 08:00:00'),
     registration_end_at: DateTime.parse('September 15, 2029 23:59:59'),
     currency: 'USD',
-    capacity: nil,
+    capacity: nil
   }
 ]
 events.each do |event|
@@ -230,24 +232,25 @@ events.each do |event|
     end
   end
 
-  if event[:event_sessions].present?
-    event[:event_sessions].each do |session|
-      sess = evt.event_sessions.find_or_create_by!(name: session[:name]) do |s|
-        session.except(:event_speaker).each do |key, value|
-          s[key] = value
-        end
-      end
+  next if event[:event_sessions].blank?
 
-      if session[:event_speaker].present?
-        speaker = session[:event_speaker]
-        speaker[:event_id] = evt.id
-        speaker = evt.event_speakers.find_or_create_by!(first_name: speaker[:first_name], last_name: speaker[:last_name]) do |sp|
-          speaker.each do |key, value|
-            sp[key] = value
-          end
-          speaker[:event_sessions] = [sess]
-        end
+  event[:event_sessions].each do |session|
+    sess = evt.event_sessions.find_or_create_by!(name: session[:name]) do |s|
+      session.except(:event_speaker).each do |key, value|
+        s[key] = value
       end
+    end
+
+    next if session[:event_speaker].blank?
+
+    speaker = session[:event_speaker]
+    speaker[:event_id] = evt.id
+    speaker = evt.event_speakers.find_or_create_by!(first_name: speaker[:first_name],
+                                                    last_name: speaker[:last_name]) do |sp|
+      speaker.each do |key, value|
+        sp[key] = value
+      end
+      speaker[:event_sessions] = [sess]
     end
   end
 end

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class CreateEventSpeakers < ActiveRecord::Migration[7.1]
   def change
     create_table :event_speakers, id: false do |t|
-      t.string :id, primary_key: true, default: -> { "gen_random_uuid()" }
+      t.string :id, primary_key: true, default: -> { 'gen_random_uuid()' }
 
       t.string :first_name, null: false
       t.string :last_name, null: false

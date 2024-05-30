@@ -1,0 +1,38 @@
+require:
+  - rubocop-rails
+
+# Offense count: 2
+# Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
+Metrics/AbcSize:
+  Max: 21
+
+# Offense count: 1
+# Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
+# AllowedMethods: refine
+Metrics/BlockLength:
+  Max: 27
+
+# Offense count: 3
+# Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
+Metrics/MethodLength:
+  Max: 20
+
+# Offense count: 2
+# Configuration parameters: Include.
+# Include: app/models/**/*.rb
+Rails/HasAndBelongsToMany:
+  Exclude:
+    - "app/models/event_session.rb"
+    - "app/models/event_speaker.rb"
+
+# Offense count: 22
+# Configuration parameters: AllowedConstants.
+Style/Documentation:
+  Enabled: false
+
+# Offense count: 22
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
+# URISchemes: http, https
+Layout/LineLength:
+  Max: 600

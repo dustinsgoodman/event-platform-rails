@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class CreateEvents < ActiveRecord::Migration[7.1]
   def change
     create_table :events, id: false do |t|
-      t.string :id, primary_key: true, default: -> { "gen_random_uuid()" }
+      t.string :id, primary_key: true, default: -> { 'gen_random_uuid()' }
       # Event Metadata
       t.string :name, null: false
       t.text :description

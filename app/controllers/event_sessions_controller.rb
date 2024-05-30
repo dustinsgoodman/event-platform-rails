@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class EventSessionsController < AdminController
-  before_action :set_event_session, only: %i[ show edit update destroy ]
+  before_action :set_event_session, only: %i[show edit update destroy]
 
   # GET /event/:event_id/sessions
   def index
@@ -7,8 +9,7 @@ class EventSessionsController < AdminController
   end
 
   # GET /event_sessions/1 or /event_sessions/1.json
-  def show
-  end
+  def show; end
 
   # GET /event_sessions/new
   def new
@@ -16,8 +17,7 @@ class EventSessionsController < AdminController
   end
 
   # GET /event_sessions/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /event_sessions or /event_sessions.json
   def create
@@ -25,7 +25,7 @@ class EventSessionsController < AdminController
 
     respond_to do |format|
       if @event_session.save
-        format.html { redirect_to event_session_url(@event_session), notice: "Event session was successfully created." }
+        format.html { redirect_to event_session_url(@event_session), notice: t('EventSession.created') }
         format.json { render :show, status: :created, location: @event_session }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class EventSessionsController < AdminController
   def update
     respond_to do |format|
       if @event_session.update(event_session_params)
-        format.html { redirect_to event_session_url(@event_session), notice: "Event session was successfully updated." }
+        format.html { redirect_to event_session_url(@event_session), notice: t('EventSession.updated') }
         format.json { render :show, status: :ok, location: @event_session }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,20 @@ class EventSessionsController < AdminController
     @event_session.destroy!
 
     respond_to do |format|
-      format.html { redirect_to event_sessions_url, notice: "Event session was successfully destroyed." }
+      format.html { redirect_to event_sessions_url, notice: t('EventSession.destroyed') }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event_session
-      @event_session = EventSession.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def event_session_params
-      params.require(:event_session).permit(:name, :description, :start_at, :end_at, :capcity)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event_session
+    @event_session = EventSession.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def event_session_params
+    params.require(:event_session).permit(:name, :description, :start_at, :end_at, :capcity)
+  end
 end
