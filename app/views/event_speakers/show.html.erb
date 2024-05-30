@@ -2,6 +2,13 @@
 
 <%= render @event_speaker %>
 
+<h2>Sessions</h2>
+<% @event_speaker.event_sessions.each do |session| %>
+  <p>
+    <%= session.name %>
+  </p>
+<% end %>
+
 <div>
   <%= link_to "Edit this event speaker", edit_event_speaker_path(@event_speaker) %> |
   <%= link_to "Back to event speakers", event_speakers_path %>
