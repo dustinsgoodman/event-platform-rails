@@ -5,11 +5,16 @@ class EventsController < AdminController
 
   # GET /events or /events.json
   def index
-    @events = Event.all
+    orgs_ids = current_user.platform_organization_ids
+    @events = Event.where(organization_id: orgs_ids)
   end
 
   # GET /events/1 or /events/1.json
-  def show; end
+  def show
+    authorize @event
+  rescue Pundit::NotAuthorizedError
+    not_found
+  end
 
   # GET /events/new
   def new
@@ -17,7 +22,11 @@ class EventsController < AdminController
   end
 
   # GET /events/1/edit
-  def edit; end
+  def edit
+    authorize @event
+  rescue Pundit::NotAuthorizedError
+    not_found
+  end
 
   # POST /events or /events.json
   def create
@@ -36,6 +45,8 @@ class EventsController < AdminController
 
   # PATCH/PUT /events/1 or /events/1.json
   def update
+    authorize @event
+
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to event_url(@event), notice: t('Event.updated') }
@@ -45,16 +56,21 @@ class EventsController < AdminController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
+  rescue Pundit::NotAuthorizedError
+    not_found
   end
 
   # DELETE /events/1 or /events/1.json
   def destroy
+    authorize @event
     @event.destroy!
 
     respond_to do |format|
       format.html { redirect_to events_url, notice: t('Event.destroyed') }
       format.json { head :no_content }
     end
+  rescue Pundit::NotAuthorizedError
+    not_found
   end
 
   private

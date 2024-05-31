@@ -27,4 +27,8 @@ class User < ApplicationRecord
   def send_devise_notification(notification, *)
     devise_mailer.send(notification, self, *).deliver_later
   end
+
+  def org_access?(org_id)
+    platform_organization_ids.include?(org_id)
+  end
 end
