@@ -5,6 +5,8 @@ require:
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
   Max: 21
+  Exclude:
+    - "db/migrate/*.rb"
 
 # Offense count: 1
 # Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
@@ -16,6 +18,8 @@ Metrics/BlockLength:
 # Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
 Metrics/MethodLength:
   Max: 20
+  Exclude:
+    - "db/migrate/*.rb"
 
 # Offense count: 2
 # Configuration parameters: Include.

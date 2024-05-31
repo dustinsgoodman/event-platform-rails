@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateEventSessionSpeakers < ActiveRecord::Migration[7.1]
   def change
     create_table :event_session_speakers, id: false do |t|
