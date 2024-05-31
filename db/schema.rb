@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_30_232104) do
-  create_table "event_session_speakers", force: :cascade do |t|
-    t.integer "event_sessions_id", null: false
-    t.integer "event_speakers_id", null: false
+ActiveRecord::Schema[7.1].define(version: 2024_05_31_000328) do
+  create_table "event_session_speakers", id: false, force: :cascade do |t|
+    t.string "event_session_id", null: false
+    t.string "event_speaker_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_sessions_id"], name: "index_event_session_speakers_on_event_sessions_id"
-    t.index ["event_speakers_id"], name: "index_event_session_speakers_on_event_speakers_id"
+    t.index ["event_session_id"], name: "index_event_session_speakers_on_event_session_id"
+    t.index ["event_speaker_id"], name: "index_event_session_speakers_on_event_speaker_id"
   end
 
   create_table "event_sessions", id: :string, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -67,7 +67,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_30_232104) do
     t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "platform_organization_id"
+    t.string "platform_organization_id"
     t.index ["platform_organization_id"], name: "index_events_on_platform_organization_id"
   end
 
@@ -77,12 +77,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_30_232104) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "platform_organizations_users", id: false, force: :cascade do |t|
-    t.string "platform_organization_id", null: false
+  create_table "platform_organizations_users", force: :cascade do |t|
     t.string "user_id", null: false
+    t.string "platform_organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["platform_organization_id"], name: "index_platform_organizations_users_on_platform_organization_id"
+    t.index ["user_id"], name: "index_platform_organizations_users_on_user_id"
   end
 
-  create_table "users", id: :string, force: :cascade do |t|
+  create_table "users", id: :string, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "provider", null: false
@@ -90,8 +94,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_30_232104) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
@@ -104,15 +106,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_30_232104) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  add_foreign_key "event_session_speakers", "event_sessions", column: "event_sessions_id"
-  add_foreign_key "event_session_speakers", "event_speakers", column: "event_speakers_id"
+  add_foreign_key "event_session_speakers", "event_sessions"
+  add_foreign_key "event_session_speakers", "event_speakers"
   add_foreign_key "event_sessions", "events"
   add_foreign_key "event_speakers", "events"
   add_foreign_key "events", "platform_organizations"
+  add_foreign_key "platform_organizations_users", "platform_organizations"
+  add_foreign_key "platform_organizations_users", "users"
 end

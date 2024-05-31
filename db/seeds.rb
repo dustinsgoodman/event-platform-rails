@@ -10,11 +10,19 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-@user = User.find_or_create_by!(email: 'local@test.com') do |user|
-  user.password = 'password'
-  user.provider = 'developer'
-  user.uid = ''
+org = PlatformOrganization.find_or_create_by!(name: 'Connect.Tech')
+user = User.find_or_create_by!(email: 'local@test.com') do |u|
+  u.password = 'password'
+  u.provider = 'developer'
+  u.uid = ''
 end
+User.find_or_create_by!(email: 'empty@test.com') do |u|
+  u.password = 'password'
+  u.provider = 'developer'
+  u.uid = ''
+end
+org.users << user
+org.save
 
 speaker_dustin = {
   first_name: 'Dustin',
@@ -226,7 +234,7 @@ events = [
   }
 ]
 events.each do |event|
-  evt = Event.find_or_create_by!(name: event[:name]) do |e|
+  evt = Event.find_or_create_by!(name: event[:name], platform_organization_id: org.id) do |e|
     event.except(:event_sessions).each do |key, value|
       e[key] = value
     end
@@ -250,7 +258,8 @@ events.each do |event|
       speaker.each do |key, value|
         sp[key] = value
       end
-      speaker[:event_sessions] = [sess]
     end
+    speaker.event_sessions << sess
+    speaker.save
   end
 end

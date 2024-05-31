@@ -21,9 +21,5 @@ class CreateEventSpeakers < ActiveRecord::Migration[7.1]
       # Relationships
       t.references :event, index: true, foreign_key: true, type: :string
     end
-
-    create_join_table :event_sessions, :event_speakers, table_name: :event_sessions_event_speakers, column_options: {
-      type: :string
-    }
   end
 end
