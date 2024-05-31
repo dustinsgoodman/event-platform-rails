@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_many :platform_organizations_users, dependent: :destroy
+  has_many :platform_organizations, through: :platform_organizations_users
   devise :omniauthable, omniauth_providers: %i[developer]
   devise :database_authenticatable
 
