@@ -5,11 +5,11 @@ one:
   description: MyString
   start_at: 2024-05-23 17:24:18
   end_at: 2024-05-23 17:24:18
-  capcity: 1
+  capacity: 1
 
 two:
   name: MyString
   description: MyString
   start_at: 2024-05-23 17:24:18
   end_at: 2024-05-23 17:24:18
-  capcity: 1
+  capacity: 1
