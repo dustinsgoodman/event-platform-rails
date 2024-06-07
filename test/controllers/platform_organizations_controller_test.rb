@@ -4,7 +4,7 @@ require 'test_helper'
 
 class PlatformOrganizationsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @platform_organization = platform_organizations(:one)
+    @platform_organization = platform_organizations(:connect_tech)
   end
 
   test 'should get index' do

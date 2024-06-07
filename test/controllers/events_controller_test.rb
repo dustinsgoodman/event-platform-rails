@@ -3,8 +3,11 @@
 require 'test_helper'
 
 class EventsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
-    @event = events(:one)
+    sign_in users(:local)
+    @event = events(:connect_tech_2023)
   end
 
   test 'should get index' do
@@ -18,13 +21,22 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create event' do
+    event_name = Faker::Esport.event
     assert_difference('Event.count') do
-      post events_url,
-           params: { event: { description: @event.description, end_at: @event.end_at, name: @event.name,
-                              start_at: @event.start_at, timezone: @event.timezone } }
+      post events_url, params: {
+        event: {
+          name: event_name,
+          description: Faker::Lorem.paragraph,
+          timezone: @event.timezone,
+          start_at: 5.minutes.from_now,
+          end_at: 20.minutes.from_now,
+          registration_start_at: 1.minute.from_now,
+          registration_end_at: 4.minutes.from_now
+        }
+      }
     end
 
-    assert_redirected_to event_url(Event.last)
+    assert_redirected_to event_url(Event.find_by(name: event_name))
   end
 
   test 'should show event' do

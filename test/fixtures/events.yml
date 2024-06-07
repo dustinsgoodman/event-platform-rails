@@ -1,15 +1,37 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  description: MyString
-  timezone: MyString
-  start_at: 2024-05-23 16:27:34
-  end_at: 2024-05-23 16:27:34
+connect_tech_2023:
+  name: "Connect.Tech 2023"
+  description: "The largest multi-framework front-end conference in the USA. A three day event diving deep with experts from across the tech ecosystem."
+  timezone: "America/New_York"
+  start_at: <%= DateTime.parse('October 24, 2023 08:00:00') %>
+  end_at: <%= DateTime.parse('October 26, 2023 05:00:00') %>
+  venue_type: "IN_PERSON"
+  venue_name: "Georgia World Congress Center"
+  address: "285 Andrew Young International Blvd NW"
+  country: "USA"
+  city: "Atlanta"
+  state_or_province: "GA"
+  postal_code: "30313"
+  registration_start_at: <%= DateTime.parse('May 1, 2023 08:00:00') %>
+  registration_end_at: <%= DateTime.parse('September 15, 2023 23:59:59') %>
+  currency: "USD"
+  platform_organization: connect_tech
 
-two:
-  name: MyString
-  description: MyString
-  timezone: MyString
-  start_at: 2024-05-23 16:27:34
-  end_at: 2024-05-23 16:27:34
+connect_tech_2024:
+  name: "Connect.Tech 2024"
+  description: "The largest multi-framework front-end conference in the USA. A three day event diving deep with experts from across the tech ecosystem."
+  timezone: "America/New_York"
+  start_at: <%= DateTime.parse('October 24, 2024 08:00:00') %>
+  end_at: <%= DateTime.parse('October 26, 2024 05:00:00') %>
+  venue_type: "IN_PERSON"
+  venue_name: "Cobb Galleria Centre"
+  address: "2 Galleria Pkwy SE"
+  country: "USA"
+  city: "Atlanta"
+  state_or_province: "GA"
+  postal_code: "30339"
+  registration_start_at: <%= DateTime.parse('May 1, 2024 08:00:00') %>
+  registration_end_at: <%= DateTime.parse('September 15, 2024 23:59:59') %>
+  currency: "USD"
+  platform_organization: connect_tech

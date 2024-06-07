@@ -4,7 +4,7 @@ require 'test_helper'
 
 class EventSpeakersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @event_speaker = event_speakers(:one)
+    @event_speaker = event_speakers(:dustin)
   end
 
   test 'should get index' do

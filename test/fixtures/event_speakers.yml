@@ -1,23 +1,35 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+dustin:
+  first_name: "Dustin"
+  last_name: "Goodman"
+  job_title: "Engineering Manager"
+  company: "This Dot"
+  profile_picture: "https://sessionize.com/image/997e-400o400o2-ErWnrX3Q6Z4sefhpd86weG.jpg"
+  date_of_birth: <%= Date.parse('November 2, 1990') %>
+  language: "en-US"
+  ip_address: "171.174.170.81"
+  bio: "Dustin Goodman is an engineer, tech speaker, and blogger with over a decade of experience in web development. He currently acts as an Engineering Manager at This Dot, and actively contributes free community resources through This Dot Media. He actively engages in the tech communities to bring new tech to people in accessible ways. He loves learning new tech and finding ways to use it in meaningful ways within projects. Additionally, he enjoys mentoring rising developers and helping them attain the knowledge and skills they need to level-up."
+  event: connect_tech_2023
 
-one:
-  first_name: MyString
-  last_name: MyString
-  job_title: MyString
-  company: MyString
-  profile_picture: MyString
-  bio: MyText
-  date_of_birth: 2024-05-23 17:58:08
-  language: MyString
-  ip_address: MyString
+mike:
+  first_name: "Mike"
+  last_name: "Hartington"
+  job_title: "Developer/Advocate"
+  company: "Ionic"
+  profile_picture: "https://sessionize.com/image/4fa6-400o400o2-94cLY2MbjsgFNAGjoyaKxV.jpg"
+  date_of_birth: <%= Date.parse('February 19, 1988') %>
+  language: "en-US"
+  ip_address: "95.25.112.121"
+  bio: "Mike is a developer, Angular GDE, and Director of Developer Advocacy at Ionic who's been working in the mobile landscape for most of his professional career. When he's not working Ionic itself, Mike works with community members and helps them succeed at mobile. In his spare time, he’s an aspiring woodworker, occasional musician, and craft beer lover."
+  event: connect_tech_2023
 
-two:
-  first_name: MyString
-  last_name: MyString
-  job_title: MyString
-  company: MyString
-  profile_picture: MyString
-  bio: MyText
-  date_of_birth: 2024-05-23 17:58:08
-  language: MyString
-  ip_address: MyString
+cory:
+  first_name: "Cory"
+  last_name: "House"
+  job_title: "Author / Consultant"
+  company: nil
+  profile_picture: "https://sessionize.com/image/af5d-400o400o2-BkPm4ggeAKRPpzBY1mPi2g.jpg"
+  date_of_birth: <%= Date.parse('September 17, 1984') %>
+  language: "en-US"
+  ip_address: "51.105.121.194"
+  bio: "Cory is a Pluralsight author, 9 time Microsoft MVP, and international speaker. He is founder of reactjsconsulting, where he helps companies transition to React. He has trained over 10,000 software developers at conferences and businesses worldwide. Cory has authored over a dozen courses on JavaScript, React, C#, automated testing, and web development on Pluralsight. He shares software development tips daily on Twitter as @housecor."
+  event: connect_tech_2023

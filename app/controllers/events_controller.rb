@@ -6,7 +6,7 @@ class EventsController < AdminController
   # GET /events or /events.json
   def index
     orgs_ids = current_user.platform_organization_ids
-    @events = Event.where(organization_id: orgs_ids)
+    @events = Event.where(platform_organization_id: orgs_ids)
   end
 
   # GET /events/1 or /events/1.json
@@ -31,6 +31,7 @@ class EventsController < AdminController
   # POST /events or /events.json
   def create
     @event = Event.new(event_params)
+    @event.platform_organization = current_user.current_org
 
     respond_to do |format|
       if @event.save
@@ -82,6 +83,11 @@ class EventsController < AdminController
 
   # Only allow a list of trusted parameters through.
   def event_params
-    params.require(:event).permit(:name, :description, :timezone, :start_at, :end_at)
+    params
+      .require(:event)
+      .permit(
+        :name, :description, :timezone, :start_at, :end_at,
+        :registration_start_at, :registration_end_at
+      )
   end
 end
