@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_31_000328) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_13_215203) do
   create_table "event_session_speakers", id: false, force: :cascade do |t|
     t.string "event_session_id", null: false
     t.string "event_speaker_id", null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_31_000328) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "event_id"
+    t.index ["event_id", "name"], name: "index_event_sessions_on_event_id_and_name", unique: true
     t.index ["event_id"], name: "index_event_sessions_on_event_id"
   end
 
@@ -45,6 +46,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_31_000328) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "event_id"
+    t.string "email", default: "", null: false
+    t.index ["event_id", "email"], name: "index_event_speakers_on_event_id_and_email", unique: true
     t.index ["event_id"], name: "index_event_speakers_on_event_id"
   end
 
