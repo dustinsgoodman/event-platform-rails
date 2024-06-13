@@ -7,7 +7,7 @@ class EventSessionsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     sign_in users(:local)
-    @event = events(:connect_tech_2023)
+    @event = events(:connect_tech2023)
     @event_session = event_sessions(:challenge_graphql)
   end
 

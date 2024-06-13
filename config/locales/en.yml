@@ -45,10 +45,16 @@ en:
     updated: "Event was successfully updated."
     destroyed: "Event was successfully destroyed."
   EventSession:
+    Validation:
+      Name:
+        Unique: "should be unique within the event"
     created: "Session was successfully created."
     updated: "Session was successfully updated."
     destroyed: "Session was successfully destroyed."
   EventSpeaker:
+    Validation:
+      Email:
+        Unique: "should be unique within the event"
     created: "Speaker was successfully created."
     updated: "Speaker was successfully updated."
     destroyed: "Speaker was successfully destroyed."

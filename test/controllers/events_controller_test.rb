@@ -7,7 +7,7 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     sign_in users(:local)
-    @event = events(:connect_tech_2023)
+    @event = events(:connect_tech2023)
   end
 
   test 'should get index' do

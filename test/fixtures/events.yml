@@ -1,6 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-connect_tech_2023:
+connect_tech2023:
   name: "Connect.Tech 2023"
   description: "The largest multi-framework front-end conference in the USA. A three day event diving deep with experts from across the tech ecosystem."
   timezone: "America/New_York"

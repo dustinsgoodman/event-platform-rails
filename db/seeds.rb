@@ -27,6 +27,7 @@ org.save
 speaker_dustin = {
   first_name: 'Dustin',
   last_name: 'Goodman',
+  email: Faker::Internet.unique.email,
   job_title: 'Engineering Manager',
   company: 'This Dot',
   profile_picture:
@@ -39,6 +40,7 @@ speaker_dustin = {
 speaker_mike = {
   first_name: 'Mike',
   last_name: 'Hartington',
+  email: Faker::Internet.unique.email,
   job_title: 'Developer/Advocate',
   company: 'Ionic',
   profile_picture:
@@ -51,6 +53,7 @@ speaker_mike = {
 speaker_cory = {
   first_name: 'Cory',
   last_name: 'House',
+  email: Faker::Internet.unique.email,
   job_title: 'Author / Consultant',
   company: nil,
   profile_picture:
