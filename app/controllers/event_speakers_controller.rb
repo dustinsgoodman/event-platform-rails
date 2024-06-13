@@ -21,11 +21,12 @@ class EventSpeakersController < AdminController
 
   # POST /event_speakers or /event_speakers.json
   def create
-    @event_speaker = EventSpeaker.new(event_speaker_params)
+    create_params = event_speaker_params.merge({ event_id: params[:event_id] })
+    @event_speaker = EventSpeaker.new(create_params)
 
     respond_to do |format|
       if @event_speaker.save
-        format.html { redirect_to event_speaker_url(@event_speaker), notice: t('EventSpeaker.created') }
+        format.html { redirect_to event_speaker_url(event_id: @event_speaker.event_id, id: @event_speaker.id), notice: t('EventSpeaker.created') }
         format.json { render :show, status: :created, location: @event_speaker }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class EventSpeakersController < AdminController
   def update
     respond_to do |format|
       if @event_speaker.update(event_speaker_params)
-        format.html { redirect_to event_speaker_url(@event_speaker), notice: t('EventSpeaker.updated') }
+        format.html { redirect_to event_speaker_url(event_id: @event_speaker.event_id, id: @event_speaker.id), notice: t('EventSpeaker.updated') }
         format.json { render :show, status: :ok, location: @event_speaker }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +53,7 @@ class EventSpeakersController < AdminController
     @event_speaker.destroy!
 
     respond_to do |format|
-      format.html { redirect_to event_speakers_url, notice: t('EventSpeaker.destroyed') }
+      format.html { redirect_to event_speakers_url(event_id: @event_speaker.event_id), notice: t('EventSpeaker.destroyed') }
       format.json { head :no_content }
     end
   end
@@ -66,7 +67,9 @@ class EventSpeakersController < AdminController
 
   # Only allow a list of trusted parameters through.
   def event_speaker_params
-    params.require(:event_speaker).permit(:first_name, :last_name, :job_title, :company, :profile_picture, :bio,
-                                          :date_of_birth, :language, :ip_address)
+    params
+      .require(:event_speaker)
+      .permit(:first_name, :last_name, :job_title, :company, :profile_picture, :bio,
+              :date_of_birth, :language, :ip_address)
   end
 end

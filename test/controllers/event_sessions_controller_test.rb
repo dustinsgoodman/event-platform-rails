@@ -47,7 +47,7 @@ class EventSessionsControllerTest < ActionDispatch::IntegrationTest
     patch event_session_url(event_id: @event.id, id: @event_session),
           params: { event_session: { capacity: @event_session.capacity, description: @event_session.description,
                                      end_at: @event_session.end_at, name: @event_session.name, start_at: @event_session.start_at } }
-    assert_redirected_to event_session_url(event_id: @event.id, id: @event_session)
+    assert_redirected_to event_session_url(event_id: @event.id, id: @event_session.id)
   end
 
   test 'should destroy event_session' do

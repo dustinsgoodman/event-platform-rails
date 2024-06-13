@@ -19,7 +19,7 @@ class PlatformOrganizationsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create platform_organization' do
     assert_difference('PlatformOrganization.count') do
-      post platform_organizations_url, params: { platform_organization: {} }
+      post platform_organizations_url, params: { platform_organization: { name: Faker::Company.name } }
     end
 
     assert_redirected_to platform_organization_url(PlatformOrganization.last)
@@ -36,7 +36,7 @@ class PlatformOrganizationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update platform_organization' do
-    patch platform_organization_url(@platform_organization), params: { platform_organization: {} }
+    patch platform_organization_url(@platform_organization), params: { platform_organization: { name: Faker::Company.name } }
     assert_redirected_to platform_organization_url(@platform_organization)
   end
 

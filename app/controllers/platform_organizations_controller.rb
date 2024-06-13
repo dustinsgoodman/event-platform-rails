@@ -66,6 +66,6 @@ class PlatformOrganizationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def platform_organization_params
-    params.fetch(:platform_organization, {})
+    params.require(:platform_organization).permit(:name)
   end
 end
