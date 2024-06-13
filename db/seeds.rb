@@ -10,7 +10,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-org = PlatformOrganization.find_or_create_by!(name: 'Connect.Tech')
+connect_tech_org = PlatformOrganization.find_or_create_by!(name: 'Connect.Tech')
+react_conf_org = PlatformOrganization.find_or_create_by!(name: 'React Conf')
 user = User.find_or_create_by!(email: 'local@test.com') do |u|
   u.password = 'password'
   u.provider = 'developer'
@@ -21,8 +22,10 @@ User.find_or_create_by!(email: 'empty@test.com') do |u|
   u.provider = 'developer'
   u.uid = ''
 end
-org.users << user
-org.save
+user.platform_organizations << connect_tech_org
+user.platform_organizations << react_conf_org
+user.current_platform_organization = connect_tech_org
+user.save
 
 speaker_dustin = {
   first_name: 'Dustin',
@@ -65,12 +68,13 @@ speaker_cory = {
 }
 events = [
   {
+    platform_organization_id: connect_tech_org.id,
     name: 'Connect.Tech 2023',
     description:
       'The largest multi-framework front-end conference in the USA. A three day event diving deep with experts from across the tech ecosystem.',
     timezone: 'America/New_York',
-    start_at: DateTime.parse('October 24, 2023 08:00:00'),
-    end_at: DateTime.parse('October 26, 2023 05:00:00'),
+    start_at: 3.months.from_now.beginning_of_day,
+    end_at: 3.months.from_now.end_of_day,
     venue_type: 'IN_PERSON',
     venue_name: 'Georgia World Congress Center',
     address: '285 Andrew Young International Blvd NW',
@@ -122,12 +126,13 @@ events = [
     ]
   },
   {
+    platform_organization_id: connect_tech_org.id,
     name: 'Connect.Tech 2024',
     description:
       'The largest multi-framework front-end conference in the USA. A three day event diving deep with experts from across the tech ecosystem.',
     timezone: 'America/New_York',
-    start_at: DateTime.parse('October 24, 2024 08:00:00'),
-    end_at: DateTime.parse('October 26, 2024 05:00:00'),
+    start_at: 1.year.from_now.beginning_of_day,
+    end_at: 1.year.from_now.end_of_day,
     venue_type: 'IN_PERSON',
     venue_name: 'Georgia World Congress Center',
     address: '285 Andrew Young International Blvd NW',
@@ -141,12 +146,13 @@ events = [
     capacity: nil
   },
   {
+    platform_organization_id: connect_tech_org.id,
     name: 'Connect.Tech 2025',
     description:
       'The largest multi-framework front-end conference in the USA. A three day event diving deep with experts from across the tech ecosystem.',
     timezone: 'America/New_York',
-    start_at: DateTime.parse('October 24, 2025 08:00:00'),
-    end_at: DateTime.parse('October 26, 2025 05:00:00'),
+    start_at: 2.years.from_now.beginning_of_day,
+    end_at: 2.years.from_now.end_of_day,
     venue_type: 'IN_PERSON',
     venue_name: 'Georgia World Congress Center',
     address: '285 Andrew Young International Blvd NW',
@@ -160,12 +166,13 @@ events = [
     capacity: nil
   },
   {
+    platform_organization_id: connect_tech_org.id,
     name: 'Connect.Tech 2026',
     description:
       'The largest multi-framework front-end conference in the USA. A three day event diving deep with experts from across the tech ecosystem.',
     timezone: 'America/New_York',
-    start_at: DateTime.parse('October 24, 2026 08:00:00'),
-    end_at: DateTime.parse('October 26, 2026 05:00:00'),
+    start_at: 3.years.from_now.beginning_of_day,
+    end_at: 3.years.from_now.end_of_day,
     venue_type: 'IN_PERSON',
     venue_name: 'Georgia World Congress Center',
     address: '285 Andrew Young International Blvd NW',
@@ -179,12 +186,13 @@ events = [
     capacity: nil
   },
   {
+    platform_organization_id: connect_tech_org.id,
     name: 'Connect.Tech 2027',
     description:
       'The largest multi-framework front-end conference in the USA. A three day event diving deep with experts from across the tech ecosystem.',
     timezone: 'America/New_York',
-    start_at: DateTime.parse('October 24, 2027 08:00:00'),
-    end_at: DateTime.parse('October 26, 2027 05:00:00'),
+    start_at: 4.years.from_now.beginning_of_day,
+    end_at: 4.years.from_now.end_of_day,
     venue_type: 'IN_PERSON',
     venue_name: 'Georgia World Congress Center',
     address: '285 Andrew Young International Blvd NW',
@@ -198,12 +206,13 @@ events = [
     capacity: nil
   },
   {
+    platform_organization_id: connect_tech_org.id,
     name: 'Connect.Tech 2028',
     description:
       'The largest multi-framework front-end conference in the USA. A three day event diving deep with experts from across the tech ecosystem.',
     timezone: 'America/New_York',
-    start_at: DateTime.parse('October 24, 2028 08:00:00'),
-    end_at: DateTime.parse('October 26, 2028 05:00:00'),
+    start_at: 5.years.from_now.beginning_of_day,
+    end_at: 5.years.from_now.end_of_day,
     venue_type: 'IN_PERSON',
     venue_name: 'Georgia World Congress Center',
     address: '285 Andrew Young International Blvd NW',
@@ -217,12 +226,13 @@ events = [
     capacity: nil
   },
   {
+    platform_organization_id: connect_tech_org.id,
     name: 'Connect.Tech 2029',
     description:
       'The largest multi-framework front-end conference in the USA. A three day event diving deep with experts from across the tech ecosystem.',
     timezone: 'America/New_York',
-    start_at: DateTime.parse('October 24, 2029 08:00:00'),
-    end_at: DateTime.parse('October 26, 2029 05:00:00'),
+    start_at: 6.years.from_now.beginning_of_day,
+    end_at: 6.years.from_now.end_of_day,
     venue_type: 'IN_PERSON',
     venue_name: 'Georgia World Congress Center',
     address: '285 Andrew Young International Blvd NW',
@@ -234,10 +244,25 @@ events = [
     registration_end_at: DateTime.parse('September 15, 2029 23:59:59'),
     currency: 'USD',
     capacity: nil
+  },
+  {
+    platform_organization_id: react_conf_org.id,
+    name: 'React Conf 2024',
+    description:
+      'React Rules',
+    timezone: 'America/New_York',
+    start_at: 1.day.from_now.beginning_of_day,
+    end_at: 2.days.from_now.end_of_day,
+    venue_type: 'ONLINE',
+    registration_start_at: DateTime.parse('May 1, 2024 08:00:00'),
+    registration_end_at: DateTime.parse('September 15, 2024 23:59:59'),
+    currency: 'USD',
+    capacity: nil,
+    event_sessions: []
   }
 ]
 events.each do |event|
-  evt = Event.find_or_create_by!(name: event[:name], platform_organization_id: org.id) do |e|
+  evt = Event.find_or_create_by!(name: event[:name], platform_organization_id: event[:platform_organization_id]) do |e|
     event.except(:event_sessions).each do |key, value|
       e[key] = value
     end
