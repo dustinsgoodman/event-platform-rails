@@ -29,11 +29,11 @@ class User < ApplicationRecord
     devise_mailer.send(notification, self, *).deliver_later
   end
 
-  def org_access?(org_id)
+  def platform_organization_access?(org_id)
     platform_organization_ids.include?(org_id)
   end
 
-  def current_org
+  def current_platform_organization
     # TODO: should come from the session or database or some other persistent storage
     platform_organizations.first
   end

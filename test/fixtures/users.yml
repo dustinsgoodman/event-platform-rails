@@ -3,7 +3,9 @@ local:
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>
   provider: "developer"
   uid: ""
-  platform_organizations: connect_tech
+  platform_organizations:
+    - connect_tech
+    - react_conf
 
 empty:
   email: "empty@test.com"

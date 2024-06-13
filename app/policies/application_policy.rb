@@ -14,11 +14,11 @@ class ApplicationPolicy
 
   # TODO: Make all published items visible to everyone
   def show?
-    org_access?
+    platform_organization_access?
   end
 
   def create?
-    org_access?
+    platform_organization_access?
   end
 
   def new?
@@ -26,7 +26,7 @@ class ApplicationPolicy
   end
 
   def update?
-    org_access?
+    platform_organization_access?
   end
 
   def edit?
@@ -34,7 +34,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    org_access?
+    platform_organization_access?
   end
 
   class Scope
@@ -54,8 +54,8 @@ class ApplicationPolicy
 
   private
 
-  def org_access?
-    user.org_access?(record_org_id)
+  def platform_organization_access?
+    user.platform_organization_access?(record_org_id)
   end
 
   def record_org_id

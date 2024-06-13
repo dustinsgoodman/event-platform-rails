@@ -34,11 +34,17 @@ class UserTest < ActiveSupport::TestCase
     skip 'Pending active mailer testing setup'
   end
 
-  test '#org_access?' do
+  test '#platform_organization_access?' do
     local_user, empty_user = users(:local, :empty)
     organization = platform_organizations(:connect_tech)
 
-    assert local_user.org_access?(organization.id), 'User does not have access to organization and should'
-    assert_not empty_user.org_access?(organization.id), 'User has access to organization and should not'
+    assert local_user.platform_organization_access?(organization.id), 'User does not have access to organization and should'
+    assert_not empty_user.platform_organization_access?(organization.id), 'User has access to organization and should not'
+  end
+
+  test '#current_platform_organization' do
+    local_user = users(:local)
+    organization = platform_organizations(:connect_tech)
+    assert local_user.current_platform_organization == organization, 'User does not have a current organization'
   end
 end

@@ -31,7 +31,7 @@ class EventsController < AdminController
   # POST /events or /events.json
   def create
     @event = Event.new(event_params)
-    @event.platform_organization = current_user.current_org
+    @event.platform_organization = current_user.current_platform_organization
 
     respond_to do |format|
       if @event.save
