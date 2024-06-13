@@ -41,10 +41,4 @@ class UserTest < ActiveSupport::TestCase
     assert local_user.platform_organization_access?(organization.id), 'User does not have access to organization and should'
     assert_not empty_user.platform_organization_access?(organization.id), 'User has access to organization and should not'
   end
-
-  test '#current_platform_organization' do
-    local_user = users(:local)
-    organization = platform_organizations(:connect_tech)
-    assert local_user.current_platform_organization == organization, 'User does not have a current organization'
-  end
 end

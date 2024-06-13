@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_13_215203) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_13_223500) do
   create_table "event_session_speakers", id: false, force: :cascade do |t|
     t.string "event_session_id", null: false
     t.string "event_speaker_id", null: false
@@ -111,7 +111,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_215203) do
     t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "current_platform_organization_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["current_platform_organization_id"], name: "index_users_on_current_platform_organization_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
@@ -124,4 +126,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_215203) do
   add_foreign_key "events", "platform_organizations"
   add_foreign_key "platform_organizations_users", "platform_organizations"
   add_foreign_key "platform_organizations_users", "users"
+  add_foreign_key "users", "platform_organizations", column: "current_platform_organization_id"
 end

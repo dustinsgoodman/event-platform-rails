@@ -3,6 +3,10 @@
 class User < ApplicationRecord
   has_many :platform_organizations_users, dependent: :destroy
   has_many :platform_organizations, through: :platform_organizations_users
+  belongs_to :current_platform_organization,
+             class_name: 'PlatformOrganization',
+             optional: true,
+             inverse_of: false
   devise :omniauthable, omniauth_providers: %i[developer]
   devise :database_authenticatable, :registerable
 
@@ -31,10 +35,5 @@ class User < ApplicationRecord
 
   def platform_organization_access?(org_id)
     platform_organization_ids.include?(org_id)
-  end
-
-  def current_platform_organization
-    # TODO: should come from the session or database or some other persistent storage
-    platform_organizations.first
   end
 end
