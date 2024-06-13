@@ -3,7 +3,10 @@
 require 'test_helper'
 
 class PlatformOrganizationsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
+    sign_in users(:local)
     @platform_organization = platform_organizations(:connect_tech)
   end
 
@@ -18,11 +21,12 @@ class PlatformOrganizationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create platform_organization' do
+    name = Faker::Company.name
     assert_difference('PlatformOrganization.count') do
-      post platform_organizations_url, params: { platform_organization: { name: Faker::Company.name } }
+      post platform_organizations_url, params: { platform_organization: { name: } }
     end
 
-    assert_redirected_to platform_organization_url(PlatformOrganization.last)
+    assert_redirected_to platform_organization_url(PlatformOrganization.find_by(name:))
   end
 
   test 'should show platform_organization' do

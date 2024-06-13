@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PlatformOrganizationsController < ApplicationController
+class PlatformOrganizationsController < AdminController
   before_action :set_platform_organization, only: %i[show edit update destroy]
 
   # GET /platform_organizations or /platform_organizations.json
