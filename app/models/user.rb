@@ -10,6 +10,8 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: %i[developer]
   devise :database_authenticatable, :registerable
 
+  validate :current_platform_organization_belongs_to_user
+
   def self.from_omniauth(auth)
     raise NotImplementedError, 'TODO'
     # find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
@@ -35,5 +37,13 @@ class User < ApplicationRecord
 
   def platform_organization_access?(org_id)
     platform_organization_ids.include?(org_id)
+  end
+
+  private
+
+  def current_platform_organization_belongs_to_user
+    return if current_platform_organization.nil? || platform_organization_ids.include?(current_platform_organization.id)
+
+    errors.add(:current_platform_organization, 'must belong to the user')
   end
 end
