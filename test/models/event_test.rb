@@ -17,7 +17,10 @@ class EventTest < ActiveSupport::TestCase
 
   test 'validates date' do
     organization = platform_organizations(:connect_tech)
-    event = Event.new(platform_organization_id: organization.id, name: 'Test Event')
+    event = Event.new(
+      platform_organization_id: organization.id,
+      name: 'Test Event'
+    )
 
     assert_not event.save, 'Saved invalid event'
     assert event.errors.full_messages.length == 2, "Expected 1 error, got #{event.errors.full_messages.length}"
