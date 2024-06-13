@@ -5,8 +5,12 @@ class EventsController < AdminController
 
   # GET /events or /events.json
   def index
-    orgs_ids = current_user.platform_organization_ids
-    @events = Event.where(platform_organization_id: orgs_ids)
+    organization = current_user.current_platform_organization
+    @events = if organization.nil?
+                []
+              else
+                Event.where(platform_organization_id: organization.id)
+              end
   end
 
   # GET /events/1 or /events/1.json
