@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
   resources :platform_organizations
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  post 'users/platform_organizations/change_current_organization/:id', to: 'users/platform_organizations#change_current_organization', as: :change_current_organization
 
   resources :events do
     resources :event_sessions, path: :sessions, as: :sessions
