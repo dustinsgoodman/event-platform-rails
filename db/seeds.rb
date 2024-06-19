@@ -10,6 +10,9 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# Do not run this seed file in production
+return if Rails.env.production?
+
 connect_tech_org = PlatformOrganization.find_or_create_by!(name: 'Connect.Tech')
 react_conf_org = PlatformOrganization.find_or_create_by!(name: 'React Conf')
 user = User.find_or_create_by!(email: 'local@test.com') do |u|
