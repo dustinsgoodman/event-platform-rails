@@ -27,6 +27,14 @@ body {
   margin: 0;
 }
 
+main {
+  padding: 0.5rem 1rem;
+}
+
+button {
+  font-size: 1rem;
+}
+
 .event-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

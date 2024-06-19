@@ -32,15 +32,8 @@
   }
 }
 
-.dropdown_menu a {
-  display: inline-block;
-  text-decoration: none;
-  text-align: center;
-  font-size: 1rem;
-  color: blue;
-}
-
 .dropdown_menu > a,
+.dropdown_menu > button,
 .dropdown_button {
   padding: 1rem 0.5rem;
 }
@@ -59,12 +52,21 @@
   padding: 0.5em 0;
   min-width: 15ch;
 
-  a {
+  button {
+    cursor: pointer;
+    width: 100%;
+  }
+
+  a,
+  button {
+    border: none;
     display: block;
     text-decoration: underline;
     text-align: center;
     font-size: 1rem;
     padding: 0.5em;
+    color: blue;
+    background: transparent;
 
     &:hover {
       background-color: #ccc;

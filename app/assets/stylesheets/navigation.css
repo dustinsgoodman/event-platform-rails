@@ -1,0 +1,43 @@
+header {
+  position: sticky;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  height: 4rem;
+  /* TOOD: remove this border when we're done styling the header */
+  border-bottom: 1px solid #e6e6e6;
+
+  & .logo {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    margin-right: auto;
+  }
+
+  & nav {
+    padding: 0 1rem;
+    display: grid;
+    place-items: center;
+
+    & ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      align-items: center;
+
+      & li {
+        padding: 0;
+      }
+    }
+
+    & > ul {
+      grid-auto-flow: column;
+
+      & > li {
+        margin: 0 0.5rem;
+      }
+    }
+  }
+}
