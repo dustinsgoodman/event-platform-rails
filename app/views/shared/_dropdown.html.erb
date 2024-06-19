@@ -7,8 +7,19 @@
 </button>
 <ul class="dropdown_menu" id="<%= menu_name %>">
   <% menu_options.each do |option| %>
-    <li>
-      <%= link_to option[:title], option[:path] %>
-    </li>
+    <% if option.has_key?(:method) %>
+      <li>
+        <%= button_to(
+          option[:title],
+          option[:path],
+          method: option[:method],
+          class: option[:class]
+        ) %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to option[:title], option[:path], class: option[:class] %>
+      </li>
+    <% end %>
   <% end %>
 </ul>

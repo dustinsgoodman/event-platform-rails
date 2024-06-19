@@ -1,0 +1,31 @@
+<header>
+  <span class="logo">Event Platform</span>
+  <nav aria-labelledby="primary-navigation">
+    <ul id="primary-navigation">
+      <% navigation_tree.each do |nav_item| %>
+        <% if nav_item.has_key?(:submenu) %>
+          <li class="dropdown">
+            <%= render partial: "shared/dropdown", locals: {
+              title: nav_item[:title],
+              menu_name: nav_item[:title].downcase.gsub(" ", "_").concat("_dropdown"),
+              menu_options: nav_item[:submenu]
+            } %>
+          </li>
+        <% elsif nav_item.has_key?(:method) %>
+          <li>
+            <%= button_to(
+              nav_item[:title],
+              nav_item[:path],
+              method: nav_item[:method],
+              class: nav_item[:class]
+            ) %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to nav_item[:title], nav_item[:path], class: nav_item[:class] %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </nav>
+</header>
