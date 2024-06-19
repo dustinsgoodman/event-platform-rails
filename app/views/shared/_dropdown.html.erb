@@ -1,0 +1,14 @@
+<button
+  type="button"
+  class="dropdown_button"
+  aria-expanded="false"
+  aria-controls="<%= menu_name %>">
+  <%= title %>
+</button>
+<ul class="dropdown_menu" id="<%= menu_name %>">
+  <% menu_options.each do |option| %>
+    <li>
+      <%= link_to option[:title], option[:path] %>
+    </li>
+  <% end %>
+</ul>
