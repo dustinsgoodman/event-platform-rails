@@ -1,0 +1,95 @@
+form {
+  width: 100%;
+  margin: 0 auto;
+
+  & > * + * {
+    margin-top: 2rem;
+  }
+
+  & > div {
+    display: grid;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  & .col-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  & .form-group > * + * {
+    margin-top: 0.5rem;
+  }
+
+  label {
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: 600;
+    /* peer-disabled:cursor-not-allowed peer-disabled:opacity-70 */
+  }
+
+  input:not([type="submit"]),
+  select {
+    display: flex;
+    height: 2.5rem;
+    width: 100%;
+    background: white;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(228, 228, 231);
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    /* flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 */
+  }
+
+  textarea {
+    display: flex;
+    min-height: 5rem;
+    width: 100%;
+    background: white;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(228, 228, 231);
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    /* lex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 */
+  }
+
+  .form-action {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+
+    & button,
+    & input[type="submit"] {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      border-radius: 0.25rem;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      font-weight: 600;
+      height: 2.5rem;
+      padding: 0.5rem 1rem;
+      margin-left: auto;
+      background: black;
+      color: white;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      /* ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50  hover:bg-primary/90  */
+    }
+  }
+
+  p.error {
+    color: red;
+    font-size: 0.875rem;
+    margin: 0;
+    padding: 0;
+    margin-top: 0.5rem;
+  }
+}

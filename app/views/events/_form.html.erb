@@ -1,42 +1,178 @@
-<%= form_with(model: event) do |form| %>
-  <% if event.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+<%= form_with model: event, html: {
+  novalidate: "novalidate",
+  "data-controller" => "event-form"
+} do |form| %>
 
-      <ul>
-        <% event.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+  <div>
+    <% if event.errors.any? %>
+      <p class="error">
+        Failed to save. Form had errors. See below.
+      </p>
+    <% end %>
+
+    <div class="col-2">
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, placeholder: 'My Conference', required: true %>
+        <% event.errors[:name].each do |error| %>
+          <p class="error"><%= error %></p>
         <% end %>
-      </ul>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :timezone %>
+        <%= form.select :timezone,
+                        ActiveSupport::TimeZone.us_zones.map { |zone| [zone.to_s, zone.tzinfo.name] }.sort,
+                        { include_blank: false }
+        %>
+        <% event.errors[:timezone].each do |error| %>
+          <p class="error"><%= error %></p>
+        <% end %>
+      </div>
     </div>
-  <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <div class="form-group">
+      <%= form.label :description %>
+      <%= form.text_area :description,
+                         placeholder: "Tell people about what's happening at your event.",
+                         required: true
+      %>
+      <% event.errors[:description].each do |error| %>
+        <p class="error"><%= error %></p>
+      <% end %>
+    </div>
+
+    <div class="col-2">
+      <div class="form-group">
+        <%= form.label :start_at, "Start Date and Time" %>
+        <%= form.datetime_field :start_at, required: true %>
+        <% event.errors[:start_at].each do |error| %>
+          <p class="error"><%= error %></p>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :end_at, "End Date and Time" %>
+        <%= form.datetime_field :end_at, required: true %>
+        <% event.errors[:end_at].each do |error| %>
+          <p class="error"><%= error %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-2">
+      <div class="form-group">
+        <%= form.label :registration_start_at, "Registration Start Date and Time" %>
+        <%= form.datetime_field :registration_start_at, required: false %>
+        <% event.errors[:registration_start_at].each do |error| %>
+          <p class="error"><%= error %></p>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :registration_end_at, "Registration End Date and Time" %>
+        <%= form.datetime_field :registration_end_at, required: false %>
+        <% event.errors[:registration_end_at].each do |error| %>
+          <p class="error"><%= error %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-2">
+      <div class="form-group">
+        <%= form.label :venue_type %>
+        <%= form.select :venue_type,
+                        [
+                          ['In Person', 'IN_PERSON'],
+                          ['Hybrid', 'HYBRID'],
+                          ['Online', 'ONLINE']
+                        ],
+                        { include_blank: false },
+                        data: {
+                          "event-form-target" => "venueType",
+                          "action" => "event-form#handleVenueTypeChange"
+                        }
+        %>
+        <% event.errors[:venue_type].each do |error| %>
+          <p class="error"><%= error %></p>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :currency %>
+        <%= form.select :currency, SUPPORTED_CURRENCIES, placeholder: 'USD' %>
+        <% event.errors[:currency].each do |error| %>
+          <p class="error"><%= error %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-2 <%= 'hidden' if event.online? %>" data-event-form-target="location1Container">
+      <div class="form-group">
+        <%= form.label :venue_name %>
+        <%= form.text_field :venue_name,
+                            required: false
+        %>
+        <% event.errors[:venue_name].each do |error| %>
+          <p class="error"><%= error %></p>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :capacity %>
+        <%= form.number_field :capacity, placeholder: 100, min: 1 %>
+        <% event.errors[:capacity].each do |error| %>
+          <p class="error"><%= error %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group <%= 'hidden' if event.online? %>" data-event-form-target="location2Container">
+      <%= form.label :address %>
+      <%= form.text_field :address, placeholder: '555 Main St.' %>
+      <% event.errors[:address].each do |error| %>
+        <p class="error"><%= error %></p>
+      <% end %>
+    </div>
+
+    <div class="col-2 <%= 'hidden' if event.online? %>" data-event-form-target="location3Container">
+      <div class="form-group">
+        <%= form.label :country %>
+        <%= form.text_field :country, placeholder: 'United States of America' %>
+        <% event.errors[:country].each do |error| %>
+          <p class="error"><%= error %></p>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :city %>
+        <%= form.text_field :city, placeholder: 'Atlanta' %>
+        <% event.errors[:city].each do |error| %>
+          <p class="error"><%= error %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-2 <%= 'hidden' if event.online? %>" data-event-form-target="location4Container">
+      <div class="form-group">
+        <%= form.label :state_or_province %>
+        <%= form.text_field :state_or_province, placeholder: 'GA' %>
+        <% event.errors[:state_or_province].each do |error| %>
+          <p class="error"><%= error %></p>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :postal_code %>
+        <%= form.text_field :postal_code, placeholder: '30006' %>
+        <% event.errors[:postal_code].each do |error| %>
+          <p class="error"><%= error %></p>
+        <% end %>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div>
-    <%= form.label :timezone, style: "display: block" %>
-    <%= form.text_field :timezone %>
-  </div>
-
-  <div>
-    <%= form.label :start_at, style: "display: block" %>
-    <%= form.datetime_field :start_at %>
-  </div>
-
-  <div>
-    <%= form.label :end_at, style: "display: block" %>
-    <%= form.datetime_field :end_at %>
-  </div>
-
-  <div>
+  <div class="form-action">
     <%= form.submit %>
   </div>
 <% end %>

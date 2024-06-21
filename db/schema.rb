@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_13_223500) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_20_215840) do
   create_table "event_session_speakers", id: false, force: :cascade do |t|
     t.string "event_session_id", null: false
     t.string "event_speaker_id", null: false
@@ -64,8 +64,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_223500) do
     t.string "city"
     t.string "state_or_province"
     t.string "postal_code"
-    t.datetime "registration_start_at", null: false
-    t.datetime "registration_end_at", null: false
+    t.datetime "registration_start_at"
+    t.datetime "registration_end_at"
     t.string "currency", default: "USD", null: false
     t.integer "capacity"
     t.datetime "created_at", null: false

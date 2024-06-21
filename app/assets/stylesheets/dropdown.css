@@ -17,7 +17,6 @@
 .dropdown_button {
   background-color: transparent;
   border: none;
-  cursor: pointer;
   display: inline-flex;
   align-items: center;
   text-align: center;
@@ -53,7 +52,6 @@
   min-width: 15ch;
 
   button {
-    cursor: pointer;
     width: 100%;
   }
 

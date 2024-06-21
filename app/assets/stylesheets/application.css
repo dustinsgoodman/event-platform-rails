@@ -13,6 +13,11 @@
  *= require_self
  *= require_tree .
  */
+
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 16px;
   font-family: arial, sans-serif;
@@ -31,8 +36,14 @@ main {
   padding: 0.5rem 1rem;
 }
 
-button {
+button,
+input[type="submit"] {
   font-size: 1rem;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .event-grid {
