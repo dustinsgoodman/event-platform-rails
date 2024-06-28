@@ -1,18 +1,52 @@
-<p style="color: green"><%= notice %></p>
+<% if notice %>
+  <p style="color: green"><%= notice %></p>
+<% end %>
 
-<h1>Events</h1>
+<div class="page-title">
+  <h1>Events</h1>
 
-<div id="events" class="event-grid">
-  <% @events.each do |event| %>
-    <div class="event-card">
-      <%= render event %>
-      <p>
-        <%= link_to "Show", event %>
-        &nbsp;
-        <%= link_to "Edit", edit_event_path(event) %>
-      </p>
-    </div>
-  <% end %>
+  <nav aria-labelledby="quick-actions">
+    <ul class="inline">
+      <li>
+        <%= link_to "New event", new_event_path, class: "btn-secondary" %>
+      </li>
+    </ul>
+  </nav>
 </div>
 
-<%= link_to "New event", new_event_path %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Capacity Info</th>
+      <th>Revenue</th>
+      <th>Starts at</th>
+      <th>Ends at</th>
+      <th>Registration Starts at</th>
+      <th>Registration Ends at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= link_to event.name, event %></td>
+        <td>
+          <% if event.capacity %>
+            <%= rand(1..(event.capacity || 100)) %> / <%= event.capacity %>
+          <% else %>
+            <%= rand(1..(event.capacity || 100)) %>
+          <% end %>
+        </td>
+        <td class="mono">
+          <%= number_to_currency(rand(1...10000), precision: 0) %>
+        </td>
+        <td class="mono"><%= event.start_at.in_time_zone(event.timezone).to_fs(:abbrev_rfc822) %></td>
+        <td class="mono"><%= event.end_at.in_time_zone(event.timezone).to_fs(:abbrev_rfc822) %></td>
+        <td class="mono"><%= event.registration_start_at.in_time_zone(event.timezone).to_fs(:abbrev_rfc822) %></td>
+        <td class="mono"><%= event.registration_end_at.in_time_zone(event.timezone).to_fs(:abbrev_rfc822) %></td>
+        <td><%= link_to "Show", event %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -9,7 +9,7 @@ class EventsController < AdminController
     @events = if organization.nil?
                 []
               else
-                Event.where(platform_organization_id: organization.id)
+                Event.where(platform_organization_id: organization.id).order(start_at: :desc)
               end
   end
 

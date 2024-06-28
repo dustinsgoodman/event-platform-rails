@@ -1,10 +1,13 @@
-<h1>Editing event</h1>
+<div class="page-title">
+  <h1>Editing event</h1>
 
-<%= render "form", event: @event %>
 
-<br>
-
-<div>
-  <%= link_to "Show this event", @event %> |
-  <%= link_to "Back to events", events_path %>
+  <nav aria-labelledby="quick-actions">
+    <ul class="inline">
+      <li><%= link_to "Cancel", @event %></li>
+      <li><%= link_to "Back to events", events_path %></li>
+    </ul>
+  </nav>
 </div>
+
+<%= render "form", event: @event, cta: I18n.t('Event.Actions.Update') %>
