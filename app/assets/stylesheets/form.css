@@ -2,10 +2,6 @@ form {
   width: 100%;
   margin: 0 auto;
 
-  & > * + * {
-    margin-top: 2rem;
-  }
-
   & > div {
     display: grid;
     gap: 1.5rem;
@@ -34,9 +30,8 @@ form {
     display: flex;
     height: 2.5rem;
     width: 100%;
-    background: white;
     border-radius: 0.25rem;
-    border: 1px solid rgb(228, 228, 231);
+    border: 1px solid var(--color-zinc-300);
     padding: 0.5rem 0.75rem;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -47,9 +42,8 @@ form {
     display: flex;
     min-height: 5rem;
     width: 100%;
-    background: white;
     border-radius: 0.25rem;
-    border: 1px solid rgb(228, 228, 231);
+    border: 1px solid var(--color-zinc-300);
     padding: 0.5rem 0.75rem;
     font-size: 1rem;
     line-height: 1.5rem;
@@ -74,19 +68,13 @@ form {
       height: 2.5rem;
       padding: 0.5rem 1rem;
       margin-left: auto;
-      background: black;
-      color: white;
-
-      &:hover {
-        background: rgba(0, 0, 0, 0.8);
-      }
 
       /* ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50  hover:bg-primary/90  */
     }
   }
 
   p.error {
-    color: red;
+    color: var(--color-red-500);
     font-size: 0.875rem;
     margin: 0;
     padding: 0;

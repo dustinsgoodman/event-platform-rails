@@ -3,7 +3,7 @@
 
   &:hover,
   &:focus-within {
-    background: #f9f9f9;
+    background: var(--color-zinc-300);
     transition: 120ms all 120ms ease-out;
 
     .dropdown_menu {
@@ -25,7 +25,7 @@
   &:after {
     content: "";
     border: 0.35rem solid transparent;
-    border-top-color: black;
+    border-top-color: var(--color-black);
     margin-left: 0.25em;
     transform: translateY(0.15em);
   }
@@ -45,9 +45,9 @@
   transform-origin: top center;
   opacity: 0.3;
   transition: 280ms all 120ms ease-out;
-  background-color: #fff;
+  background-color: var(--color-white);
   border-radius: 0.25rem;
-  box-shadow: 0 0.15em 0.25em rgba(0, 0, 0, 0.25);
+  box-shadow: var(--box-shadow);
   padding: 0.5em 0;
   min-width: 15ch;
 
@@ -67,7 +67,7 @@
     background: transparent;
 
     &:hover {
-      background-color: #ccc;
+      background-color: var(--color-zinc-200);
     }
   }
 }

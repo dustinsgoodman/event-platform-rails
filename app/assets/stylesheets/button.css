@@ -7,19 +7,19 @@
 }
 
 .btn-primary {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--color-purple-500);
+  color: var(--color-white);
 
   &:hover {
-    background-color: #0056b3;
+    background-color: var(--color-purple-700);
   }
 }
 
 .btn-secondary {
-  background-color: #6c757d;
-  color: white;
+  background-color: var(--color-zinc-500);
+  color: var(--color-white);
 
   &:hover {
-    background-color: #545b62;
+    background-color: var(--color-zinc-700);
   }
 }

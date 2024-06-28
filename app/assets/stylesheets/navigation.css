@@ -5,8 +5,7 @@ header {
   padding: 0;
   margin: 0;
   height: 4rem;
-  /* TOOD: remove this border when we're done styling the header */
-  border-bottom: 1px solid #e6e6e6;
+  box-shadow: var(--box-shadow);
 
   & .logo {
     font-size: 1.8rem;
