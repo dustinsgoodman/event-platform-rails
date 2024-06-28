@@ -3,6 +3,8 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
 
+  around_action :switch_locale
+
   def not_found
     raise ActionController::RoutingError, 'Not Found'
   end
@@ -32,23 +34,40 @@ class ApplicationController < ActionController::Base
       tree << {
         title: 'Dashboard',
         path: events_path,
-        class: 'btn btn-primary'
+        class: 'btn-primary'
       }
       tree << {
         title: 'Log out',
         path: destroy_user_session_path,
-        class: 'btn btn-secondary',
+        class: 'btn-secondary',
         method: :delete
       }
     else
       tree << {
         title: 'Log In',
         path: new_user_session_path,
-        class: 'btn btn-primary'
+        class: 'btn-primary'
       }
     end
 
     tree
   end
   helper_method :navigation_tree
+
+  private
+
+  def switch_locale(&)
+    locale = current_user.try(:locale)[0..1]
+    locale ||= params[:locale]
+    locale ||= I18n.default_locale
+    I18n.with_locale(locale, &)
+  end
+
+  def default_url_options
+    if current_user
+      {}
+    else
+      { locale: I18n.locale }
+    end
+  end
 end

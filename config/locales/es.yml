@@ -1,6 +1,45 @@
-# Additional translations at https://github.com/heartcombo/devise/wiki/I18n
-
-en:
+es:
+  hello: "Hola mundo"
+  PlatformOrganization:
+    created: "Organization was successfully created."
+    updated: "Organization was successfully updated."
+    destroyed: "Organization was successfully destroyed."
+  Event:
+    Actions:
+      Create: "Create Event"
+      Update: "Update Event"
+    Validation:
+      StartAt:
+        Presence: "must be present"
+        Future: "must be in the future"
+      EndAt:
+        Presence: "must be present"
+        AfterStartAt: "must be after start at"
+      Timezone:
+        Presence: "must be present"
+        Format: "not a valid timezone format"
+      RegistrationStartAt:
+        BeforeRegistrationEndAt: "must be before registration end time"
+        BeforeStartAt: "must be before event start time"
+      Currency:
+        Type: "is not currently supported. Allowed Currencies: %{currencies}"
+    created: "Event was successfully created."
+    updated: "Event was successfully updated."
+    destroyed: "Event was successfully destroyed."
+  EventSession:
+    Validation:
+      Name:
+        Unique: "should be unique within the event"
+    created: "Session was successfully created."
+    updated: "Session was successfully updated."
+    destroyed: "Session was successfully destroyed."
+  EventSpeaker:
+    Validation:
+      Email:
+        Unique: "should be unique within the event"
+    created: "Speaker was successfully created."
+    updated: "Speaker was successfully updated."
+    destroyed: "Speaker was successfully destroyed."
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
@@ -28,7 +67,7 @@ en:
       password_change:
         subject: "Password Changed"
     omniauth_callbacks:
-      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+      failure: 'Could not authenticate you from %{kind} because "%{reason}".'
       success: "Successfully authenticated from %{kind} account."
     passwords:
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
