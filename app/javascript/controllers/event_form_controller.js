@@ -4,6 +4,7 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = [
     "venueType",
+    "locationHideCondition",
     "location1Container",
     "location2Container",
     "location3Container",
@@ -11,7 +12,7 @@ export default class extends Controller {
   ];
 
   handleVenueTypeChange() {
-    if (this.venueTypeTarget.value !== "ONLINE") {
+    if (this.venueTypeTarget.value !== this.locationHideConditionTarget.value) {
       this.location1ContainerTarget.classList.remove("hidden");
       this.location2ContainerTarget.classList.remove("hidden");
       this.location3ContainerTarget.classList.remove("hidden");

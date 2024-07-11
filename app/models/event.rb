@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Event < ApplicationRecord
+  enum venue_type: { in_person: 'IN_PERSON', online: 'ONLINE', hybrid: 'HYBRID' }
+
   has_many :event_sessions, dependent: :destroy
   has_many :event_speakers, dependent: :destroy
   belongs_to :platform_organization
@@ -14,12 +16,8 @@ class Event < ApplicationRecord
   validate :registration_dates
   validate :currency_type
   validates :capacity, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
-  validates :venue_type, inclusion: %w[IN_PERSON ONLINE HYBRID]
+  validates :venue_type, inclusion: venue_types.keys
   validate :venue_info, unless: :online?
-
-  def online?
-    venue_type == 'ONLINE'
-  end
 
   private
 
@@ -62,7 +60,6 @@ class Event < ApplicationRecord
 
   # TODO: Implement venue_info validation
   def venue_info
-    puts 'Running venue info validation...'
     # %i[venue_name address country city state_or_province postal_code]
   end
 end

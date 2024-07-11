@@ -91,7 +91,9 @@ class EventsController < AdminController
       .require(:event)
       .permit(
         :name, :description, :timezone, :start_at, :end_at,
-        :registration_start_at, :registration_end_at
+        :registration_start_at, :registration_end_at,
+        :venue_type, :venue_name, :address, :country, :city,
+        :state_or_province, :postal_code, :currency, :capacity
       )
   end
 end

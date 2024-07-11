@@ -80,13 +80,15 @@
 
     <div class="col-2">
       <div class="form-group">
+        <%= form.hidden_field :location_hide_condition,
+                              value: Event.venue_types.key("ONLINE"),
+                              data: {
+                                "event-form-target" => "locationHideCondition"
+                              }
+        %>
         <%= form.label :venue_type %>
         <%= form.select :venue_type,
-                        [
-                          ['In Person', 'IN_PERSON'],
-                          ['Hybrid', 'HYBRID'],
-                          ['Online', 'ONLINE']
-                        ],
+                        Event.venue_types.keys.map { |type| [type.titleize, type] },
                         { include_blank: false },
                         data: {
                           "event-form-target" => "venueType",
