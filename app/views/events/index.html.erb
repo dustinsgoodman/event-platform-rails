@@ -41,10 +41,10 @@
         <td class="mono">
           <%= number_to_currency(rand(1...10000), precision: 0) %>
         </td>
-        <td class="mono"><%= event.start_at.in_time_zone(event.timezone).to_fs(:abbrev_rfc822) %></td>
-        <td class="mono"><%= event.end_at.in_time_zone(event.timezone).to_fs(:abbrev_rfc822) %></td>
-        <td class="mono"><%= event.registration_start_at.in_time_zone(event.timezone).to_fs(:abbrev_rfc822) %></td>
-        <td class="mono"><%= event.registration_end_at.in_time_zone(event.timezone).to_fs(:abbrev_rfc822) %></td>
+        <td class="mono"><%= pretty_date(event.start_at, event.timezone) %></td>
+        <td class="mono"><%= pretty_date(event.end_at, event.timezone) %></td>
+        <td class="mono"><%= pretty_date(event.registration_start_at, event.timezone) %></td>
+        <td class="mono"><%= pretty_date(event.registration_end_at, event.timezone) %></td>
         <td><%= link_to "Show", event %></td>
       </tr>
     <% end %>
