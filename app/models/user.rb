@@ -7,20 +7,25 @@ class User < ApplicationRecord
              class_name: 'PlatformOrganization',
              optional: true,
              inverse_of: false
-  devise :omniauthable, omniauth_providers: %i[developer]
+  devise :omniauthable, omniauth_providers: %i[developer google_oauth2]
   devise :database_authenticatable, :registerable
 
   validate :current_platform_organization_belongs_to_user
 
-  def self.from_omniauth(auth)
-    raise NotImplementedError, 'TODO'
-    # find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
-    #   user.email = auth.info.email
-    #   user.password = Devise.friendly_token[0, 20]
-    #   # If you are using confirmable and the provider(s) you use validate emails,
-    #   # uncomment the line below to skip the confirmation emails.
-    #   # user.skip_confirmation!
-    # end
+  def self.from_omniauth(provider, access_token)
+    case provider
+    when :google_oauth2
+      data = access_token.info
+      find_or_create_by(email: data['email']) do |u|
+        u.password = Devise.friendly_token[0, 20]
+        u.provider = provider
+        # TODO: set additional user information
+      end
+    when :developer
+      find_by(email: access_token.env['omniauth.auth'].info.email)
+    else
+      raise NotImplementedError, "Unknown provider: #{provider}"
+    end
   end
 
   def self.new_with_session(params, session)
