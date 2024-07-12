@@ -5,7 +5,7 @@ class AdminController < ApplicationController
   before_action :authenticate_user!
 
   def navigation_tree # rubocop:disable Metrics/MethodLength
-    @current_user = User.joins(%i[platform_organizations current_platform_organization]).find(current_user.id)
+    @current_user = User.left_joins(%i[platform_organizations current_platform_organization]).find(current_user.id)
     @current_platform_organization = @current_user.current_platform_organization
     @platform_organizations = @current_user.platform_organizations
 

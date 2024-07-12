@@ -57,10 +57,10 @@ class ApplicationController < ActionController::Base
   private
 
   def switch_locale(&)
-    locale = current_user.try(:locale)[0..1]
+    locale = current_user.try(:locale)
     locale ||= params[:locale]
     locale ||= I18n.default_locale
-    I18n.with_locale(locale, &)
+    I18n.with_locale(locale[0..1], &)
   end
 
   def default_url_options

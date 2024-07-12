@@ -4,6 +4,7 @@
     <ul id="primary-navigation">
       <% navigation_tree.each do |nav_item| %>
         <% if nav_item.has_key?(:submenu) %>
+          <% unless nav_item[:submenu].empty? %>
           <li class="dropdown">
             <%= render partial: "shared/dropdown", locals: {
               title: nav_item[:title],
@@ -11,6 +12,7 @@
               menu_options: nav_item[:submenu]
             } %>
           </li>
+          <% end %>
         <% elsif nav_item.has_key?(:method) %>
           <li>
             <%= button_to(
